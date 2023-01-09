@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard } from 'react-native';
 
 export default function App() {
   const [text, setText] = useState("");
@@ -13,11 +13,14 @@ export default function App() {
         <Text style={styles.title}>Hi, this is my first hw!</Text>
         <StatusBar style="auto" />
       </View>
-      <View style={styles.inputContainer}>
-        <TextInput style={styles.inputText} placeholder="Type text" value={text} onChangeText={handleInput}/>
-      </View>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.inputContainer}>
+          <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"}>
+            <TextInput style={styles.inputText} keyboardType="number-pad" placeholder="Type text" value={text} onChangeText={handleInput}/>
+          </KeyboardAvoidingView>
+        </View>
+      </TouchableWithoutFeedback>
     </View>
-
   );
 }
 
