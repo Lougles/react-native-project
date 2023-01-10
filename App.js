@@ -42,7 +42,7 @@ export default function App() {
         </View>
       </TouchableWithoutFeedback>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.container}>
+        <View style={styles.loginContainer}>
           <KeyboardAvoidingView
             behavior={Platform.OS == "ios" ? "padding" : "height"}
           >
@@ -83,12 +83,29 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 1,
-    borderColor: '#FF0000'
+    borderColor: '#FF0000',
+    marginBottom: 10,
+  },
+  loginContainer: {
+    padding: 24,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#ecf0f1",
+    borderWidth: 1,
+    borderColor: '#FF0000',
+    marginBottom: 10,
+  },
+  input: {
+    width: 200,
+    height: 44,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: "black",
+    marginBottom: 10,
   },
   inputText: {
     borderWidth: 1,
     borderColor: "#FF0000",
-    // padding: 25,
     height: 30,
     width: 150,
   },
