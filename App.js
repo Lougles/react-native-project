@@ -1,9 +1,30 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { StyleSheet, Text, TextInput, View, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { 
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  KeyboardAvoidingView,
+  Platform,
+  TouchableWithoutFeedback,
+  Keyboard,
+  Button,
+  Alert
+ } from 'react-native';
 
 export default function App() {
   const [text, setText] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+
+  const nameHandler = (text) => setName(text);
+  const passwordHandler = (text) => setPassword(text);
+  const onLogin = () => {
+    Alert.alert("Credentials", `${name} + ${password}`);
+    setName('');
+    setPassword('');
+  };
   const handleInput = (text) => {
     setText(text)
   }
@@ -17,6 +38,28 @@ export default function App() {
         <View style={styles.inputContainer}>
           <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"}>
             <TextInput style={styles.inputText} keyboardType="number-pad" placeholder="Type text" value={text} onChangeText={handleInput}/>
+          </KeyboardAvoidingView>
+        </View>
+      </TouchableWithoutFeedback>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.container}>
+          <KeyboardAvoidingView
+            behavior={Platform.OS == "ios" ? "padding" : "height"}
+          >
+            <TextInput
+              value={name}
+              onChangeText={nameHandler}
+              placeholder="Username"
+              style={styles.input}
+            />
+            <TextInput
+              value={password}
+              onChangeText={passwordHandler}
+              placeholder="Password"
+              secureTextEntry={true}
+              style={styles.input}
+            />
+            <Button title={"Login"} style={styles.input} onPress={onLogin} />
           </KeyboardAvoidingView>
         </View>
       </TouchableWithoutFeedback>
