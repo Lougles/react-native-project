@@ -33,9 +33,11 @@ export default function App() {
 
   return (
     <View style={{flex: 1}}>
-      <ImageBackground source={background} style={styles.container}>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={styles.loginContainer}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <ImageBackground source={background} style={styles.container}>
+          <View style={styles.registerAvatar}></View>
+          <View style={styles.registrationContainer}>
+            <Text style={styles.registerHeader}>Регистрация</Text>
             <KeyboardAvoidingView
               behavior={Platform.OS == "ios" ? "padding" : "height"}
             >
@@ -55,8 +57,8 @@ export default function App() {
               <Button title={"Login"} style={styles.input} onPress={onLogin} />
             </KeyboardAvoidingView>
           </View>
-        </TouchableWithoutFeedback>
-      </ImageBackground>
+        </ImageBackground>
+      </TouchableWithoutFeedback>
     </View>
   );
 }
@@ -64,30 +66,28 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 24,
-    padding: 24,
-    backgroundColor: "#eaeaea",
-    marginBottom: 10,
-    borderWidth: 1,
-    borderColor: '#FF0000'
   },
-  inputContainer: {
-    padding: 24,
-    backgroundColor: "#eaeaea",
+  registrationContainer: {
+    flex: 1,
+    marginTop: 250,
     alignItems: "center",
     justifyContent: "center",
-    borderWidth: 1,
-    borderColor: '#FF0000',
-    marginBottom: 10,
+    backgroundColor: "#ffffff",
+    position: 'relative',
   },
-  loginContainer: {
-    padding: 24,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#ecf0f1",
-    borderWidth: 1,
-    borderColor: '#FF0000',
-    marginBottom: 10,
+  registerAvatar: {
+    position: 'absolute',
+    zIndex: 1,
+    top: 203,
+    padding: 60,
+    marginHorizontal: 128,
+    backgroundColor: '#F6F6F6',
+    borderRadius: 16,
+  },
+  registerHeader: {
+    fontSize: 30,
+    fontFamily: 'Roboto',
+
   },
   input: {
     width: 200,
