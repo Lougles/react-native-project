@@ -1,7 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import * as Font from 'expo-font';
-import { AppLoading } from 'expo';
+import background from './assets/images/login-background.png'
 import { 
   StyleSheet,
   Text,
@@ -12,14 +11,14 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Button,
-  Alert
+  Alert,
+  ImageBackground
  } from 'react-native';
 
 export default function App() {
   const [text, setText] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  // const [isReady, setIsReady] = useState(false)
 
   const nameHandler = (text) => setName(text);
   const passwordHandler = (text) => setPassword(text);
@@ -33,36 +32,38 @@ export default function App() {
   }
 
   return (
-    <View>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.loginContainer}>
-          <KeyboardAvoidingView
-            behavior={Platform.OS == "ios" ? "padding" : "height"}
-          >
-            <TextInput
-              value={name}
-              onChangeText={nameHandler}
-              placeholder="Username"
-              style={styles.input}
-            />
-            <TextInput
-              value={password}
-              onChangeText={passwordHandler}
-              placeholder="Password"
-              secureTextEntry={true}
-              style={styles.input}
-            />
-            <Button title={"Login"} style={styles.input} onPress={onLogin} />
-          </KeyboardAvoidingView>
-        </View>
-      </TouchableWithoutFeedback>
+    <View style={{flex: 1}}>
+      <ImageBackground source={background} style={styles.container}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.loginContainer}>
+            <KeyboardAvoidingView
+              behavior={Platform.OS == "ios" ? "padding" : "height"}
+            >
+              <TextInput
+                value={name}
+                onChangeText={nameHandler}
+                placeholder="Username"
+                style={styles.input}
+              />
+              <TextInput
+                value={password}
+                onChangeText={passwordHandler}
+                placeholder="Password"
+                secureTextEntry={true}
+                style={styles.input}
+              />
+              <Button title={"Login"} style={styles.input} onPress={onLogin} />
+            </KeyboardAvoidingView>
+          </View>
+        </TouchableWithoutFeedback>
+      </ImageBackground>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0,
+    flex: 1,
     marginTop: 24,
     padding: 24,
     backgroundColor: "#eaeaea",
