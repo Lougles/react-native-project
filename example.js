@@ -15,6 +15,13 @@ import {
   Alert
  } from 'react-native';
 
+//  const loadFonts = async () => {
+//   await Font.loadAsync({
+//     "Roboto-Regular": require("./assets/Roboto-Regular.ttf"),
+//     "Roboto-Bold": require("./assets/Roboto-Bold.ttf"),
+//   });
+// };
+
 export default function App() {
   const [text, setText] = useState("");
   const [name, setName] = useState("");
@@ -31,9 +38,22 @@ export default function App() {
   const handleInput = (text) => {
     setText(text)
   }
-
+  // if (!isReady) {
+  //   return <AppLoading startAsync={loadFonts} onFinish={() => setIsReady(true)}/>
+  // }
   return (
     <View>
+      <View style={styles.container}>
+        <Text style={styles.title}>Hi, this is my first hw!</Text>
+        <StatusBar style="auto" />
+      </View>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.inputContainer}>
+          <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"}>
+            <TextInput style={styles.inputText} keyboardType="number-pad" placeholder="Type text" value={text} onChangeText={handleInput}/>
+          </KeyboardAvoidingView>
+        </View>
+      </TouchableWithoutFeedback>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.loginContainer}>
           <KeyboardAvoidingView
@@ -56,6 +76,8 @@ export default function App() {
           </KeyboardAvoidingView>
         </View>
       </TouchableWithoutFeedback>
+      {/* <Image source={{uri: 'https://reactjs.org/logo-og.png'}}
+       style={{width: 700, height: 700}} /> */}
     </View>
   );
 }
