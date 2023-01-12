@@ -9,9 +9,10 @@ import {
   Platform,
   TouchableWithoutFeedback,
   Keyboard,
-  Button,
   Alert,
-  ImageBackground
+  ImageBackground,
+  Button,
+  TouchableOpacity
  } from 'react-native';
  import * as Font from 'expo-font';
 
@@ -36,7 +37,7 @@ const Registration = () => {
       <ImageBackground source={background} style={styles.background_Image}>
         <View style={styles.form}>
           <View style={styles.form_Header_Container}>
-            <Text style={styles.form_Header}>"Регистрация"</Text>
+            <Text style={styles.form_Header}>Регистрация</Text>
           </View>
           <TextInput
             value={login}
@@ -57,6 +58,9 @@ const Registration = () => {
             secureTextEntry={true}
             style={styles.form_Input}
           />
+          <TouchableOpacity style={styles.form_Sbmt_Btn} onPress={onLogin}>
+            <Text style={styles.form_Sbmt_Btn_Text}>Зарегистрироваться</Text>
+          </TouchableOpacity>
         </View>
       </ImageBackground>
     </View>
@@ -82,6 +86,8 @@ const styles = StyleSheet.create({
   },
   form_Header: {
     fontSize: 30,
+    color: '#212121',
+    letterSpacing: 1
   },
   form_Input: {
     borderWidth: 1,
@@ -92,23 +98,16 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     marginBottom: 16,
   },
-  inputText: {
-    borderWidth: 1,
-    borderColor: "#FF0000",
-    height: 30,
-    width: 150,
+  form_Sbmt_Btn: {
+    height: 51,
+    backgroundColor: '#FF6C00',
+    borderRadius: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  title: {
-    marginTop: 16,
-    paddingVertical: 8,
-    borderWidth: 4,
-    borderColor: "#20232a",
-    borderRadius: 6,
-    backgroundColor: "#61dafb",
-    color: "#20232a",
-    textAlign: "center",
-    fontSize: 30,
-    fontWeight: "bold"
+  form_Sbmt_Btn_Text: {
+    fontSize: 16,
+    color: '#FFFFFF',
   }
 });
 
